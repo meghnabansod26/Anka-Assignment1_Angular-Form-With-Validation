@@ -1,0 +1,40 @@
+.mat
+{
+
+    color: white;
+   height: 6%
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+mat-form-field
+  {
+    width: 100%;
+
+  }
+ 
+
+
+  @media screen and (min-width: 700px) {
+    .col-md-2 {
+      display: flex;
+      justify-content: center;
+    }
+  }
+  
+
+  @media screen and (min-width: 1300px) {
+    .col-md-2 {
+     margin-left: 0%;
+    }
+  }
+
+  /* @media screen and (max-width: 965px) {
+    .col-md-2 {
+     margin-left: 5%;
+    }
+  } */
+
+  
