@@ -1,18 +1,20 @@
 <!-- Form -->
- <form [formGroup]="sampleForm" (ngSubmit)="onSubmit()">
-
+<form [formGroup]="sampleForm" (ngSubmit)="onSubmit()">
   <!-- Form Container -->
   <div class="container">
     <div class="row justify-content-center pt-4">
       <div class="col-md-6 col-lg-6 col-sm-10">
         <!-- Heading -->
-        <div class="text-center text-white pt-2" style="background-color: rgb(9, 9, 68)">
+        <div
+          class="text-center text-white pt-2"
+          style="background-color: rgb(9, 9, 68)"
+        >
           <h1 mat-dialog-content>Employee Details</h1>
         </div>
       </div>
     </div>
- 
-<!-- First Name and Last Name row -->
+
+    <!-- First Name and Last Name row -->
     <div class="row justify-content-center pt-2">
       <div class="col-lg-6 col-md-8 col-sm-10">
         <div class="row">
@@ -20,153 +22,170 @@
             <mat-form-field appearance="outline" class="display-block">
               <mat-label>First name</mat-label>
               <input matInput id="fname" formControlName="FirstName" required />
-              <mat-error *ngIf="sampleForm.get('FirstName')?.hasError('required')">First Name is required</mat-error>
-              <mat-error *ngIf="sampleForm.get('FirstName')?.hasError('pattern')">First Name should contain only letters</mat-error>
+              <mat-error
+                *ngIf="sampleForm.get('FirstName')?.hasError('required')"
+                >First Name is required</mat-error
+              >
+              <mat-error
+                *ngIf="sampleForm.get('FirstName')?.hasError('pattern')"
+                >First Name should contain only letters</mat-error
+              >
             </mat-form-field>
           </div>
           <div class="col-sm-6">
             <mat-form-field appearance="outline" class="display-block">
               <mat-label>Last name</mat-label>
               <input matInput id="lname" formControlName="LastName" required />
-              <mat-error *ngIf="sampleForm.get('LastName')?.hasError('required')">Last Name is required</mat-error>
-              <mat-error *ngIf="sampleForm.get('LastName')?.hasError('pattern')">Last Name should contain only letters</mat-error>
+              <mat-error
+                *ngIf="sampleForm.get('LastName')?.hasError('required')"
+                >Last Name is required</mat-error
+              >
+              <mat-error *ngIf="sampleForm.get('LastName')?.hasError('pattern')"
+                >Last Name should contain only letters</mat-error
+              >
             </mat-form-field>
           </div>
         </div>
       </div>
     </div>
 
-
     <!-- Gender -->
     <div class="row justify-content-center pt-2">
       <div class="col-lg-6 col-md-8 col-sm-10">
         <div class="row">
           <div class="col-sm-12">
-            <mat-radio-group formControlName="Gender" class="example-radio-group">
+            <mat-radio-group
+              aria-label
+              formControlName="Gender"
+              class="example-radio-group"
+            >
               <mat-label>Gender:</mat-label>
-              <mat-radio-button class="example-radio-button" *ngFor="let gender of genderList" [value]="gender">
-                {{ gender }} 
-              </mat-radio-button>
-             
+
+              <mat-radio-button value="Male">Male</mat-radio-button>
+<mat-radio-button value="Female">Female</mat-radio-button>
+
             </mat-radio-group>
-            <mat-error class="error-message" *ngIf="sampleForm.controls['Gender'].errors">Please select a gender.</mat-error>
+            <mat-error
+              class="error-message"
+              *ngIf="sampleForm.controls['Gender'].errors"
+              >Please select a gender.</mat-error
+            >
           </div>
         </div>
       </div>
     </div>
-
-
 
     <!-- Skills -->
-
     <div class="row justify-content-center pt-2">
       <div class="col-lg-6 col-md-8 col-sm-10">
-        <div formGroupName="skills">
-          <div class="example-sections" [formGroup]="skills">
-            <mat-label>Skills :</mat-label>
-            <div class="row">
-              <div class="col-sm-6 col-xs-12">
-                <mat-checkbox formControlName="java">Java</mat-checkbox>
-              </div>
-              <div class="col-sm-6 col-xs-12">
-                <mat-checkbox formControlName="nodejs">NodeJs</mat-checkbox>
-              </div>
-              <div class="col-sm-6 col-xs-12">
-                <mat-checkbox formControlName="angular">Angular</mat-checkbox>
-              </div>
-              <div class="col-sm-6 col-xs-12">
-                <mat-checkbox formControlName="react">React</mat-checkbox>
-              </div>
-              <div class="col-sm-6 col-xs-12">
-                <mat-checkbox formControlName="android">Android</mat-checkbox> 
-              </div>
-              <mat-error *ngIf="sampleForm.get('skills')?.hasError('skillRequired')">Please select at least one skill</mat-error>
-
-            </div>
-          </div>
-        </div>
+        <mat-label>Skills :</mat-label>
+        <mat-checkbox formControlName="Skills[i]" *ngFor="let Skill of skills; let i = index">
+          {{ Skill.value }}
+        </mat-checkbox>
       </div>
-
+    </div>
 
     <!-- Date of Birth -->
-      <div class="row justify-content-center pt-2">
-        <div class="col-lg-6 col-md-8">
-          <mat-form-field appearance="fill" class="display-block">
-            <mat-label>Choose a date</mat-label>
-            <input
-              matInput
-              [matDatepicker]="picker"
-              formControlName="date"
-              required=""
-              placeholder="MM/DD/YYYY"
-            />
-            <mat-hint></mat-hint>
-            <mat-datepicker-toggle
-              matIconSuffix
-              [for]="picker"
-            ></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-            <mat-error class="error-message" *ngIf="sampleForm.controls['date'].errors" >
-              Date of Birth is required
-            </mat-error>
-          </mat-form-field>
-        </div>
+    <div class="row justify-content-center pt-2">
+      <div class="col-lg-6 col-md-8">
+        <mat-form-field appearance="fill" class="display-block">
+          <mat-label>Choose a date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            formControlName="date"
+            required=""
+            placeholder="MM/DD/YYYY"
+          />
+          <mat-hint></mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error
+            class="error-message"
+            *ngIf="sampleForm.controls['date'].errors"
+          >
+            Date of Birth is required
+          </mat-error>
+        </mat-form-field>
       </div>
-      
-      <!-- Role -->
-      <div class="row justify-content-center pt-2 ">
-        <div class="col-lg-6 col-md-8">
-          <mat-form-field appearance="fill">
-            <mat-label>Select Role</mat-label>
-            <mat-select formControlName="Role">
-              <mat-option *ngFor="let Role of roles" [value]="Role.value">
-                {{ Role.viewValue }}
-              </mat-option>
-            </mat-select>
-            <mat-error class="error-message" *ngIf="sampleForm.controls['Role'].errors" >
+    </div>
+
+    <!-- Role -->
+    <div class="row justify-content-center pt-2">
+      <div class="col-lg-6 col-md-8">
+        <mat-form-field appearance="fill">
+          <mat-label>Select Role</mat-label>
+          <mat-select formControlName="Role">
+            <mat-option *ngFor="let Role of roles" [value]="Role.value">
+              {{ Role.value }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            class="error-message"
+            *ngIf="sampleForm.controls['Role'].errors"
+          >
             Role is required
-                  </mat-error>
-  
-          </mat-form-field>
-        </div>
-      </div> 
-  
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
 
+    <!-- About Employee -->
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-md-8">
+        <mat-form-field class="example-full-width">
+          <mat-label>About Employee</mat-label>
+          <textarea
+            matInput
+            placeholder="Write here.."
+            formControlName="AboutEmployee"
+          ></textarea>
+          <mat-hint align="end"
+            >{{
+              sampleForm.controls["AboutEmployee"].value?.length || 0
+            }}/30</mat-hint
+          >
+          <mat-error
+            *ngIf="sampleForm.controls['AboutEmployee'].hasError('maxlength')"
+          >
+            About employee should not exceed 30 characters
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
 
-      <!-- About Employee -->
-  <div class="row justify-content-center">
-    <div class="col-lg-6 col-md-8">
-      <mat-form-field class="example-full-width">
-        <mat-label>About Employee</mat-label>
-        <textarea
-          matInput
-          placeholder="Write here.."
-          formControlName="AboutEmployee"
-        ></textarea>
-        <mat-hint align="end">{{ sampleForm.controls['AboutEmployee'].value?.length || 0 }}/30</mat-hint>
-      <mat-error *ngIf="sampleForm.controls['AboutEmployee'].hasError('maxlength')">
-        About employee should not exceed 30 characters
-      </mat-error>
+    <!-- Submit and Reset Button -->
+    <div class="row justify-content-center">
+      <div class="col-md-2 col-sm-12 text-center ml-2">
+    
+        <button
+          type="submit"
+          mat-raised-button
+          color="primary"
+          class="text-white"
+          [disabled]="sampleForm.invalid || isLoading"
+          style="background-color: rgb(9, 9, 68)"
+        >
+          <mat-progress-spinner
+            *ngIf="isLoading"
+            mode="indeterminate"
+          ></mat-progress-spinner>
+          Submit
+        </button>
+        <span class="mx-2"></span>
 
-      </mat-form-field>
+        <button
+          mat-raised-button
+          color="warn"
+          class="text-white mr-2"
+          type="reset"
+        >
+          Reset
+        </button>
+      </div>
     </div>
   </div>
-
-
-  <!-- Submit and Reset Button -->
-  <div class="row justify-content-center">
-    <div class="col-md-2 col-sm-12 text-center ml-2">
-      <button type="submit" mat-raised-button color="primary" class="text-white "
-        [disabled]="sampleForm.invalid || isLoading"
-        style="background-color: rgb(9, 9, 68)">
-        <mat-progress-spinner *ngIf="isLoading" mode="indeterminate"></mat-progress-spinner>
-        Submit
-      </button>
-      <span class="mx-2"></span>
-
-      <button mat-raised-button color="warn" class="text-white mr-2" type="reset">Reset</button>
-    </div>
-  </div>
-
-  
-  
+</form>

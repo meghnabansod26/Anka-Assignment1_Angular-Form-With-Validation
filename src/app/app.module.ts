@@ -60,7 +60,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatSnackBarModule,
     MatProgressSpinnerModule,
     MatToolbarModule,
-    MatDialogModule
+    MatDialogModule,
+   
     
     
 
